@@ -22,12 +22,14 @@ $(document).ready(function() {
       let htmlString = "<p>Change in coin value in past week, as a percentage:</p>";
       coinsNow.forEach(function(coin) {
         let difference;
+        let num;
         if (body2.rates[coin] != 0) {
           difference = 100 * (body1.rates[coin] - body2.rates[coin]) / body2.rates[coin];
+          num = difference.toFixed(3);
         } else {
           difference = 'undefined';
         }
-        htmlString += `<p>${coin}: ${difference}%</p>`;
+        htmlString += `<p>${coin}: ${num}%</p>`;
       });
       $(".output").append(htmlString);
     }, function(error) {
