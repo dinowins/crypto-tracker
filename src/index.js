@@ -6,11 +6,13 @@ import { CoinRater } from './api.js'
 $(document).ready(function() {
   var Promise = require('es6-promise').Promise;
   $('#coinlayer').click(function() {
-    $("#coinlayer").hide();
 
+    let year = $("#year").val();
+    let month = $("#month").val();
+    let day = $("#day").val();
     let coinRater = new CoinRater();
     let promise1 = coinRater.liveRate();
-    let promise2 = coinRater.historicalRate("2019-03-13");
+    let promise2 = coinRater.historicalRate(`${year}-${month}-${day}`);
 
 
     Promise.all([promise1, promise2]).then(function(responses) {
